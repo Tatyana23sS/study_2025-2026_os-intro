@@ -1,0 +1,681 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  english,
+  russian,
+  12pt,
+  a4paper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{setspace}
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,provide=*]{babel}
+\else
+\usepackage[bidi=default,provide=*]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+\usepackage[backend=biber,langhook=extras,autolang=other*]{biblatex}
+\addbibresource{bib/cite.bib}
+
+\usepackage[]{csquotes}
+
+\KOMAoption{captions}{tableheading}
+\usepackage{indentfirst}
+\usepackage{float}
+\floatplacement{figure}{H}
+\usepackage{libertine}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Содержание}
+\else
+  \newcommand\contentsname{Содержание}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Список иллюстраций}
+\else
+  \newcommand\listfigurename{Список иллюстраций}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Список таблиц}
+\else
+  \newcommand\listtablename{Список таблиц}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Рисунок}
+\else
+  \newcommand\figurename{Рисунок}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Таблица}
+\else
+  \newcommand\tablename{Таблица}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Список}
+\newcommand*\listoflistings{\listof{codelisting}{Листинги}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Отчёт для первого модуля внешнего курса},
+  pdfauthor={Семенченко Татьяна Сергеевна},
+  pdflang={ru-RU},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Отчёт для первого модуля внешнего курса}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Модуль 1}
+\author{Семенченко Татьяна Сергеевна}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Содержание}
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\listoffigures
+\listoftables
+
+\setstretch{1.5}
+\chapter{Цель
+работы}\label{ux446ux435ux43bux44c-ux440ux430ux431ux43eux442ux44b}
+
+Пройти внешний курс \enquote{Введение в Linux!}
+
+\chapter{Задание}\label{ux437ux430ux434ux430ux43dux438ux435}
+
+Прохождение 1 модуля внешнего курса на stepic \enquote{Введение в
+Linux!}.
+
+\chapter{Выполнение
+курса}\label{ux432ux44bux43fux43eux43bux43dux435ux43dux438ux435-ux43aux443ux440ux441ux430}
+
+\section{Общая информация о
+курсе}\label{ux43eux431ux449ux430ux44f-ux438ux43dux444ux43eux440ux43cux430ux446ux438ux44f-ux43e-ux43aux443ux440ux441ux435}
+
+Курс называется \enquote{Введение в Linux!}(рис.~\ref{fig-01}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/1.png}}
+
+}
+
+\caption{\label{fig-01}}
+
+\end{figure}%
+
+Правильные ответы в вопросе прохождения курса (рис.~\ref{fig-02}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/2.png}}
+
+}
+
+\caption{\label{fig-02}}
+
+\end{figure}%
+
+\section{Как установить
+Linux}\label{ux43aux430ux43a-ux443ux441ux442ux430ux43dux43eux432ux438ux442ux44c-linux}
+
+Я использую windows операционную систему (рис.~\ref{fig-03}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/3.png}}
+
+}
+
+\caption{\label{fig-03}}
+
+\end{figure}%
+
+Виртуальная машина - это специальная программа для запуска одной ОС на
+другой ОС (рис.~\ref{fig-04})
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/4.png}}
+
+}
+
+\caption{\label{fig-04}}
+
+\end{figure}%
+
+Да, я работаю с системе Linux (рис.~\ref{fig-05}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/5.png}}
+
+}
+
+\caption{\label{fig-05}}
+
+\end{figure}%
+
+\section{Осваиваем
+Linux}\label{ux43eux441ux432ux430ux438ux432ux430ux435ux43c-linux}
+
+Создала документ LibreOffice Writer и написала шрифтом FreeMono Hello,
+Linux! (рис.~\ref{fig-32}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/32.png}}
+
+}
+
+\caption{\label{fig-32}}
+
+\end{figure}%
+
+Ubuntu имеет расширение deb (рис.~\ref{fig-06}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/6.png}}
+
+}
+
+\caption{\label{fig-06}}
+
+\end{figure}%
+
+Установила VLC и написала фамилию \enquote{Denis-Courmont}
+(рис.~\ref{fig-07}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/7.png}}
+
+}
+
+\caption{\label{fig-07}}
+
+\end{figure}%
+
+Update Manager можно использовать для обновления ссылок в Software
+Center, установленных программ, всей системы до новой версии
+(рис.~\ref{fig-08}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/8.png}}
+
+}
+
+\caption{\label{fig-08}}
+
+\end{figure}%
+
+\section{Terminal:
+основы}\label{terminal-ux43eux441ux43dux43eux432ux44b}
+
+Синонимами являются Терминал и Консоль (рис.~\ref{fig-09}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/9.png}}
+
+}
+
+\caption{\label{fig-09}}
+
+\end{figure}%
+
+Команда pwd (рис.~\ref{fig-10}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/10.png}}
+
+}
+
+\caption{\label{fig-10}}
+
+\end{figure}%
+
+Указала верные команды (рис.~\ref{fig-11}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/11.png}}
+
+}
+
+\caption{\label{fig-11}}
+
+\end{figure}%
+
+Указала верные команды (рис.~\ref{fig-12}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/12.png}}
+
+}
+
+\caption{\label{fig-12}}
+
+\end{figure}%
+
+Команда rm -r (рис.~\ref{fig-13}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/13.png}}
+
+}
+
+\caption{\label{fig-13}}
+
+\end{figure}%
+
+\section{Запуск исполняемых
+файлов}\label{ux437ux430ux43fux443ux441ux43a-ux438ux441ux43fux43eux43bux43dux44fux435ux43cux44bux445-ux444ux430ux439ux43bux43eux432}
+
+После команды Exit ничего не закроется (рис.~\ref{fig-14}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/14.png}}
+
+}
+
+\caption{\label{fig-14}}
+
+\end{figure}%
+
+Запуск, Ctrl+Z, bg (рис.~\ref{fig-15}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/15.png}}
+
+}
+
+\caption{\label{fig-15}}
+
+\end{figure}%
+
+Исполнила файл через python3, скопировала его вывод (рис.~\ref{fig-16}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/16.png}}
+
+}
+
+\caption{\label{fig-16}}
+
+\end{figure}%
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/17.png}}
+
+}
+
+\caption{\label{fig-17}}
+
+\end{figure}%
+
+\section{Ввод /
+вывод}\label{ux432ux432ux43eux434-ux432ux44bux432ux43eux434}
+
+Поток ошибок выводится на экран (рис.~\ref{fig-18}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/18.png}}
+
+}
+
+\caption{\label{fig-18}}
+
+\end{figure}%
+
+Выбрала команды с \textgreater, \textgreater\textgreater{}
+(рис.~\ref{fig-20}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/20.png}}
+
+}
+
+\caption{\label{fig-20}}
+
+\end{figure}%
+
+Сообщения об ошибках выводятся на экран (рис.~\ref{fig-21}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/21.png}}
+
+}
+
+\caption{\label{fig-21}}
+
+\end{figure}%
+
+\section{Скачивание файлов из
+интернета}\label{ux441ux43aux430ux447ux438ux432ux430ux43dux438ux435-ux444ux430ux439ux43bux43eux432-ux438ux437-ux438ux43dux442ux435ux440ux43dux435ux442ux430}
+
+Картинка окажется в /home/alex/1.jpg (рис.~\ref{fig-22}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/22.png}}
+
+}
+
+\caption{\label{fig-22}}
+
+\end{figure}%
+
+Опцию -q или --quiet (рис.~\ref{fig-23}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/23.png}}
+
+}
+
+\caption{\label{fig-23}}
+
+\end{figure}%
+
+Выбрала ответ: Будут скачаны jpg и html файлы, но все html будут удалены
+(рис.~\ref{fig-24}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/24.png}}
+
+}
+
+\caption{\label{fig-24}}
+
+\end{figure}%
+
+\section{Работа с
+архивами}\label{ux440ux430ux431ux43eux442ux430-ux441-ux430ux440ux445ux438ux432ux430ux43cux438}
+
+gzip удаляет архив после его распаковки (рис.~\ref{fig-25}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/25.png}}
+
+}
+
+\caption{\label{fig-25}}
+
+\end{figure}%
+
+zip и tar (рис.~\ref{fig-26}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/26.png}}
+
+}
+
+\caption{\label{fig-26}}
+
+\end{figure}%
+
+Нужно указать -cjf (рис.~\ref{fig-27}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/27.png}}
+
+}
+
+\caption{\label{fig-27}}
+
+\end{figure}%
+
+\section{Поиск файлов и слов в
+файлах}\label{ux43fux43eux438ux441ux43a-ux444ux430ux439ux43bux43eux432-ux438-ux441ux43bux43eux432-ux432-ux444ux430ux439ux43bux430ux445}
+
+Команды \emph{.jpg, alexey.}, *.? НЕ найдут файл Alexey.jpeg
+(рис.~\ref{fig-28}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/28.png}}
+
+}
+
+\caption{\label{fig-28}}
+
+\end{figure}%
+
+Выбираем там, где есть world учитывая регистр, должно быть с маленькой
+буквы (рис.~\ref{fig-29}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/29.png}}
+
+}
+
+\caption{\label{fig-29}}
+
+\end{figure}%
+
+Скачала архив, сгенерировала и загрузила файл в форму
+(рис.~\ref{fig-30}).
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/30.png}}
+
+}
+
+\caption{\label{fig-30}}
+
+\end{figure}%
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{image/31.png}}
+
+}
+
+\caption{\label{fig-31}}
+
+\end{figure}%
+
+\chapter{Выводы}\label{ux432ux44bux432ux43eux434ux44b}
+
+Прошёла Модуль 1 курса stepik \enquote{Введение в Linux!}
+
+
+\printbibliography
+
+
+
+\end{document}
