@@ -11,7 +11,7 @@ author:
       address: ул. Миклухо-Маклая, д. 6
 ## Title
 title: Внешний курс "Введение в Linux!"
-subtitle: Модуль 1
+subtitle: Модуль 2
 license: CC BY
 date: today
 date-format: "YYYY-MM-DD" # Example: 2025-09-06
@@ -96,51 +96,51 @@ date-format: "YYYY-MM-DD" # Example: 2025-09-06
 
 ## Контроль запускаемых программ
 
-[](image/2.13.png){#fig-13} 
+![](image/2.13.png){#fig-13} 
 
 ## Многопоточные приложения 
 
-[](image/2.14.png){#fig-14}
+![](image/2.14.png){#fig-14}
 
 ## Многопоточные приложения 
 
-[](image/2.15.png){#fig-15}
+![](image/2.15.png){#fig-15}
 
 ## Многопоточные приложения 
 
-[](image/2.16.png){#fig-16}
+![](image/2.16.png){#fig-16}
 
 ## Многопоточные приложения 
 
-[](image/2.17.png){#fig-17}
+![](image/2.17.png){#fig-17}
 
 ## Многопоточные приложения 
 
-[](image/2.18.png){#fig-18}
+![](image/2.18.png){#fig-18}
 
 ## Менеджер терминалов tmux
 
-[](image/2.19.png){#fig-19}
+![](image/2.19.png){#fig-19}
 
 ## Менеджер терминалов tmux
 
-[](image/2.20.png){#fig-20}
+![](image/2.20.png){#fig-20}
 
 ## Менеджер терминалов tmux
 
-[](image/2.21.png){#fig-21}
+![](image/2.21.png){#fig-21}
 
 ## Менеджер терминалов tmux
 
-[](image/2.22.png){#fig-22}
+![](image/2.22.png){#fig-22}
 
 ## Менеджер терминалов tmux
 
-[](image/2.23.png){#fig-23}
+!image/2.23.png){#fig-23}
 
 ## Менеджер терминалов tmux
 
-[](image/2.24.png){#fig-24}
+![](image/2.24.png){#fig-24}
 
 # Выводы
 
